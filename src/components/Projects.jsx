@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { projects } from '@/constants';
-import Pagination from './ui/pagination';
 import ProjectDetails from './ProjectDetails';
+import PaginationPro from './ui/PaginationPro';
 
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,7 +56,7 @@ const Projects = () => {
         ))}
       </div>
 
-      <Pagination
+      <PaginationPro
         currentPage={currentPage}
         totalPages={totalPages}
         pageSize={pageSize}
