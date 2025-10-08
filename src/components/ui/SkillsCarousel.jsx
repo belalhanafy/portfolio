@@ -7,7 +7,7 @@ import reactLogo from "../../assets/images/skills/react.png";
 import typescript from "../../assets/images/skills/typescript.png";
 import tailwind from "../../assets/images/skills/tailwind.png";
 import github from "../../assets/images/skills/github.png";
-import firebase from "../../assets/images/skills/firebase.png";
+import firebase from "../../assets/images/skills/Firebase.png";
 import redux from "../../assets/images/skills/redux.svg";
 import framer from "../../assets/images/skills/framer.png";
 import chad from "../../assets/images/skills/shadcn.png";
