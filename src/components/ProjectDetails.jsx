@@ -11,7 +11,7 @@ const ProjectDetails = ({ id, title, des, img, iconLists, link }) => {
                     href={link}
                 >
                     <>
-                        <div className="relative h-[20rem] w-full flex items-center justify-center">
+                        <div className="relative md:h-[20rem] h-[10rem] w-full flex items-center justify-center">
                             <img
                                 src={img}
                                 alt="projectPhoto"
@@ -24,7 +24,7 @@ const ProjectDetails = ({ id, title, des, img, iconLists, link }) => {
                                 <div className="py-2 text-2xl font-bold text-white">{title}</div>
                                 <div className="py-1 text-xl text-white text-white-100">{des}</div>
                             </div>
-                            <div className="flex items-center justify-between gap-10 mt-20 md:gap-0">
+                            <div className="flex items-center justify-between gap-10 mt-10 md:mt-20 md:gap-0">
                                 <div className="flex items-center justify-start ">
                                     <AnimatedTooltip items={iconLists} />
                                 </div>

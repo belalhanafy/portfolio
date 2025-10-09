@@ -10,29 +10,38 @@ import Projects from "./components/Projects";
 import Stats from "./components/Stats";
 import BackToTopBtn from "./features/BackToTopBtn";
 import ScrollProgressBar from "./features/ScrollProgressBar";
+import IntroAnimation from "./components/ui/IntroAnimation";
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState("loading"); // "loading" → "intro" → "main"
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500);
+      setPhase("intro");
+    }, 2500); // after loading GIF ends
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) {
+  if (phase === "loading") {
     return (
       <div className="flex items-center justify-center w-screen h-screen bg-black">
-        <img src="/loading.gif" alt="Loading..." className="object-contain w-full h-full" />
+        <img
+          src="/loading.gif"
+          alt="Loading..."
+          className="object-contain w-full h-full"
+        />
       </div>
     );
+  }
+
+  if (phase === "intro") {
+    return <IntroAnimation onFinish={() => setPhase("main")} />;
   }
 
   return (
     <>
       <ScrollProgressBar />
-        <BackToTopBtn />
+      <BackToTopBtn />
       <div className="container max-w-7xl">
         <Navbar />
         <Landing />

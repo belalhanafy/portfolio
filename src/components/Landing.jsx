@@ -49,7 +49,7 @@ const Landing = () => {
 
           <div className="flex flex-col justify-center w-full gap-3 mt-0 md:mt-8 sm:flex-row sm:gap-4 sm:w-auto">
             <a
-              href="/src/assets/Belal-Hanafy-Resume.pdf"
+              href="/Belal-Hanafy-Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex h-11 sm:h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 

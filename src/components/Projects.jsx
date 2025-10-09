@@ -43,7 +43,7 @@ const Projects = () => {
   return (
     <div
       id="projects"
-      className="flex flex-col w-full gap-24 px-4 py-20 mx-auto md:px-0"
+      className="flex flex-col w-full gap-24 px-0 py-20 mx-auto sm:px-8 md:px-4"
     >
       <h2 className="text-4xl font-bold text-center text-black md:text-5xl dark:text-white">
         A small selection of{' '}

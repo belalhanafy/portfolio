@@ -26,7 +26,7 @@ const About = () => {
           max-[720px]:max-w-[650px]  
           max-[640px]:max-w-[580px]  
           max-[600px]:max-w-[500px]  
-          max-[480px]:max-w-[400px]  
+          max-[480px]:max-w-[350px]  
           mx-auto xl:mx-0 px-4 sm:px-6 xl:px-0">
             <SkillsCarousel />
           </div>

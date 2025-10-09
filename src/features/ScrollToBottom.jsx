@@ -7,7 +7,7 @@ const ScrollToBottom = () => {
   };
 
   return (
-    <StyledWrapper className='absolute bottom-0 right-1/2 z-40 ' onClick={scrollToBottom}>
+    <StyledWrapper className='absolute bottom-0 z-40 translate-x-1/2 right-1/2' onClick={scrollToBottom}>
       <div className="scrolldown">
         <div className="chevrons">
           <div className="chevrondown" />
