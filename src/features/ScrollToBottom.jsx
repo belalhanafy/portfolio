@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ScrollToBottom = () => {
+const ScrollToBottom = ({ isDark }) => {
   const scrollToBottom = () => {
     window.scrollTo({ top: 810, behavior: 'smooth' });
   };
 
   return (
-    <StyledWrapper className='absolute bottom-0 z-40 translate-x-1/2 right-1/2' onClick={scrollToBottom}>
+    <StyledWrapper
+      $isDark={isDark}
+      className="absolute bottom-0 z-40 translate-x-1/2 right-1/2"
+      onClick={scrollToBottom}
+    >
       <div className="scrolldown">
         <div className="chevrons">
           <div className="chevrondown" />
@@ -20,7 +24,7 @@ const ScrollToBottom = () => {
 
 const StyledWrapper = styled.div`
   .scrolldown {
-    --color: skyblue;
+    --color: ${({ $isDark }) => ($isDark ? 'skyblue' : 'black')};
     --sizeX: 30px;
     --sizeY: 50px;
     position: relative;
@@ -31,7 +35,7 @@ const StyledWrapper = styled.div`
     box-sizing: border-box;
     margin-bottom: 16px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, border-color 0.3s ease;
   }
 
   .scrolldown:hover {
@@ -50,7 +54,7 @@ const StyledWrapper = styled.div`
     border-radius: 100%;
     animation: scrolldown-anim 2s infinite;
     box-sizing: border-box;
-    box-shadow: 0px -5px 3px 1px #2a547066;
+    box-shadow: 0px -5px 3px 1px ${({ $isDark }) => ($isDark ? '#2a547066' : '#00000033')};
   }
 
   @keyframes scrolldown-anim {
