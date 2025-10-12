@@ -77,7 +77,7 @@ export const AnimatedTooltip = ({
           width={100}
           src={item.image}
           alt={item.name}
-          className="relative object-cover object-top w-10 h-10 p-0 m-0 transition duration-500 border-2 border-black rounded-full dark:border-black sm:w-12 sm:h-12 md:w-14 md:h-14 group-hover:scale-105 group-hover:z-30"
+          className="relative object-cover object-top w-10 h-10 p-0 m-0 transition duration-500 border-2 border-black rounded-full dark:border-white sm:w-12 sm:h-12 md:w-14 md:h-14 group-hover:scale-105 group-hover:z-30"
         />
       </div>
     ))}
