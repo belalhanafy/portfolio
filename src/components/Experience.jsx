@@ -188,15 +188,16 @@ const Experience = () => {
         "
                             >
                                 <div
-                                    className="relative z-10 h-full p-5 text-center transition-all duration-500 bg-white dark:bg-gray-900 rounded-2xl group-hover:bg-gradient-to-r group-hover:from-gray-900 group-hover:to-gray-800"
+                                    className="relative z-10 h-full p-5 text-center transition-all duration-500 bg-white dark:bg-gray-900 rounded-2xl group-hover:bg-gradient-to-r group-hover:from-gray-100 group-hover:to-gray-200 dark:group-hover:from-gray-900 dark:group-hover:to-gray-800"
                                 >
+
                                     <h4 className="font-semibold text-gray-800 transition-colors duration-300 dark:text-white group-hover:text-cyan-400">
                                         {course.title}
                                     </h4>
                                     <p className="text-sm text-gray-500 dark:text-gray-400">
                                         {course.date}
                                     </p>
-                                    <p className="mt-2 text-sm text-gray-600 transition-colors duration-300 dark:text-gray-300 group-hover:text-gray-200">
+                                    <p className="mt-2 text-sm text-gray-600 transition-colors duration-300 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white">
                                         {course.description}
                                     </p>
                                 </div>

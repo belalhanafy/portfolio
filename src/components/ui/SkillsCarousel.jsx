@@ -11,12 +11,13 @@ import firebase from "../../assets/images/skills/Firebase.png";
 import redux from "../../assets/images/skills/redux.svg";
 import framer from "../../assets/images/skills/framer.png";
 import chad from "../../assets/images/skills/shadcn.png";
+import next from "../../assets/images/skills/nextjs-icon.webp";
 
 const skills = [
     { name: "HTML", logo: html },
     { name: "CSS", logo: css },
     { name: "JavaScript", logo: javascript },
-    { name: "React", logo: reactLogo },
+    { name: "Reactjs", logo: reactLogo },
     { name: "TypeScript", logo: typescript },
     { name: "TailwindCSS", logo: tailwind },
     { name: "Github", logo: github },
@@ -24,6 +25,7 @@ const skills = [
     { name: "Redux", logo: redux },
     { name: "Framer Motion", logo: framer },
     { name: "Shadcn UI", logo: chad },
+    { name: "nextjs", logo: next },
     // ➕ Add more skills here
 ];
 

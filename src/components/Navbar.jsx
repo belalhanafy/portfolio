@@ -14,9 +14,8 @@ const navItems = [
     { label: "Approach", id: "approach" },
 ];
 
-const Navbar = () => {
+const Navbar = ({ isDark, setIsDark }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isDark, setIsDark] = useState(false)
     const [activeSection, setActiveSection] = useState("home");
 
 
@@ -72,7 +71,7 @@ const Navbar = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-    
+
     const handleActiveSection = (id) => {
         setActiveSection(id);
         closeMenu();
@@ -149,7 +148,7 @@ const Navbar = () => {
                                         exit={{ opacity: 0, x: 40 }}
                                         transition={{ delay: 1 }}
                                     >
-                                        <div onClick={() => {handleScrollToContact(); closeMenu();}}>
+                                        <div onClick={() => { handleScrollToContact(); closeMenu(); }}>
                                             <AnimatedModalDemo className="flex lg:hidden" />
                                         </div>
                                     </motion.div>

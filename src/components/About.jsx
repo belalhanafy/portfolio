@@ -1,6 +1,6 @@
 import React from "react";
 import SkillsCarousel from "./ui/SkillsCarousel";
-import profileImg from "../assets/images/myImage.png";
+import profileImg from "../assets/images/my_Image.jpg";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 const words = `Hi, I’m Belal, a passionate frontend developer with experience in building modern web applications using React, TailwindCSS, Firebase, and more. I love solving problems, creating beautiful UIs, and continuously learning new technologies to improve my craft. I also work as a freelancer on Khamsat, delivering projects to clients and gaining real-world experience in web development.`;
 const About = () => {

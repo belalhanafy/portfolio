@@ -34,7 +34,7 @@ export const PinContainer = ({
             transform: transform,
           }}
           className="absolute left-1/2 p-6 top-1/2 flex justify-start items-start 
-                    rounded-3xl shadow-[0_10px_20px_rgb(0_0_0/0.4)] bg-black border border-white/[0.2] 
+                    rounded-3xl shadow-[0_10px_20px_rgb(0_0_0/0.4)] bg-white dark:bg-black border border-white/[0.2] 
                     group-hover/pin:border-white/[0.3] transition duration-700 overflow-hidden
                     md:w-[38rem] lg:w-[32rem] xl:w-[38rem] w-[20rem] sm:w-[32rem] h-auto"
         >

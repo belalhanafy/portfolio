@@ -13,12 +13,13 @@ import ScrollProgressBar from "./features/ScrollProgressBar";
 import IntroAnimation from "./components/ui/IntroAnimation";
 
 export default function App() {
-  const [phase, setPhase] = useState("loading"); // "loading" → "intro" → "main"
+  const [phase, setPhase] = useState("loading");
+  const [isDark, setIsDark] = useState(false); // ✅ shared theme state
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setPhase("intro");
-    }, 2500); // after loading GIF ends
+    }, 2500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -43,8 +44,9 @@ export default function App() {
       <ScrollProgressBar />
       <BackToTopBtn />
       <div className="container max-w-7xl">
-        <Navbar />
-        <Landing />
+        {/* ✅ Pass both isDark and setIsDark */}
+        <Navbar isDark={isDark} setIsDark={setIsDark} />
+        <Landing isDark={isDark} />
         <About />
       </div>
       <Stats />

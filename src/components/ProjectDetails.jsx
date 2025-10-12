@@ -21,8 +21,8 @@ const ProjectDetails = ({ id, title, des, img, iconLists, link }) => {
 
                         <div className='flex flex-col justify-between h-auto'>
                             <div className='flex-grow-1'>
-                                <div className="py-2 text-2xl font-bold text-white">{title}</div>
-                                <div className="py-1 text-xl text-white text-white-100">{des}</div>
+                                <div className="py-2 text-2xl font-bold text-black dark:text-white">{title}</div>
+                                <div className="py-1 text-xl text-black dark:text-white text-white-100">{des}</div>
                             </div>
                             <div className="flex items-center justify-between gap-10 mt-10 md:mt-20 md:gap-0">
                                 <div className="flex items-center justify-start ">
