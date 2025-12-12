@@ -127,21 +127,13 @@ const Contact = () => {
                             )}
                         </motion.form>
                     </div>
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
-                        viewport={{ once: true }}
-                    >
-                        <Player
-                            autoplay
-                            loop
-                            src={contactAnimation}
-                            className="w-full max-w-[300px] md:max-w-[500px] h-auto mx-auto"
-                        />
 
-                    </motion.div>
-
+                    <Player
+                        autoplay
+                        loop
+                        src={contactAnimation}
+                        className="w-full max-w-[300px] md:max-w-[500px] h-auto mx-auto"
+                    />
                 </div>
             </div>
         </section>
