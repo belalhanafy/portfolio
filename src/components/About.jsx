@@ -9,7 +9,7 @@ const About = () => {
       id="about"
       className="w-full py-8 pt-16 text-gray-800 dark:text-gray-200"
     >
-      <h2 className="xl:mb-6 mb-10 text-center xl:text-left text-3xl text-[#A374FF] font-bold md:text-4xl">
+      <h2 className="xl:mb-6 mb-10 text-center xl:text-left text-3xl text-[#A374FF] font-bold md:text-5xl">
         About Me
       </h2>
       <div className="flex flex-col-reverse items-center gap-12 xl:flex-row xl:items-center">

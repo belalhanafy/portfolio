@@ -67,7 +67,7 @@ const Projects = () => {
       id="projects"
       className="flex flex-col w-full gap-24 px-0 py-20 mx-auto overflow-hidden sm:px-8 md:px-4"
     >
-      <h2 className="text-4xl font-bold text-center text-black md:text-5xl dark:text-white">
+      <h2 className="text-3xl font-bold text-center text-black md:text-5xl dark:text-white">
         A small selection of{" "}
         <span className="text-[#A374FF]">recent projects</span>
       </h2>

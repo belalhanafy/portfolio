@@ -87,12 +87,12 @@ const Experience = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="mb-16 text-3xl font-bold text-center text-gray-800 dark:text-white"
+                className="mb-10 text-3xl font-bold text-center text-gray-800 md:text-4xl dark:text-white"
             >
                 Experience & Education
             </motion.h2>
 
-            <div className="grid max-w-6xl grid-cols-1 gap-12 px-6 mx-auto md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-12 px-6 mx-auto max-w-7xl md:grid-cols-2">
                 <div>
                     <h3 className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 dark:from-cyan-300 dark:to-purple-400 md:text-left">
                         Experience
@@ -162,7 +162,7 @@ const Experience = () => {
                 </div>
 
                 <section className="mt-2 md:col-span-2">
-                    <h3 className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 dark:from-cyan-300 dark:to-pink-400">
+                    <h3 className="mb-10 text-3xl font-semibold text-center text-transparent md:text-4xl bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 dark:from-cyan-300 dark:to-pink-400">
                         Courses & Competitions
                     </h3>
 

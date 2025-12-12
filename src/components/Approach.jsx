@@ -36,12 +36,12 @@ const Approach = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="mb-12 text-3xl font-bold text-gray-800 dark:text-white"
+                className="mb-12 text-3xl font-bold text-gray-800 md:text-5xl dark:text-white"
             >
                 My Approach
             </motion.h2>
 
-            <div className="grid max-w-6xl grid-cols-1 gap-10 px-6 mx-auto sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-10 px-6 mx-auto max-w-7xl sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((step, index) => (
                     <motion.div
                         key={index}

@@ -48,11 +48,11 @@ const CountUpNumber = ({ target }) => {
 const Stats = () => {
     return (
         <section className="text-center py-14 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
-            <h2 className="mb-10 text-3xl font-bold text-gray-800 dark:text-white">
+            <h2 className="mb-10 text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">
                 My Impact in Numbers
             </h2>
 
-            <div className="grid max-w-5xl grid-cols-2 gap-10 px-4 mx-auto sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-10 px-4 mx-auto max-w-7xl sm:grid-cols-4">
                 {stats.map((stat, i) => (
                     <motion.div
                         key={i}
