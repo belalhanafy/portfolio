@@ -50,7 +50,7 @@ const Contact = () => {
             className="relative py-20 text-center text-gray-800 bg-white dark:bg-black dark:text-gray-200"
         >
             <div className="px-6 mx-auto max-w-7xl">
-                <div className="flex flex-col justify-between gap-6 lg:flex-row ">
+                <div className="flex flex-col-reverse justify-between gap-6 lg:flex-row ">
                     <div className="text-left">
                         <motion.h2
                             initial={{ opacity: 0, y: 50 }}
@@ -61,7 +61,7 @@ const Contact = () => {
                                 ease: "easeInOut",
                             }}
                             viewport={{ once: true }}
-                            className="mb-10 text-3xl font-bold md:text-5xl"
+                            className="mb-6 text-3xl font-bold md:text-5xl"
                         >
                             Get In Touch
                         </motion.h2>
@@ -71,7 +71,7 @@ const Contact = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.6 }}
                             viewport={{ once: true }}
-                            className="max-w-xl mx-auto mb-10 text-gray-600 dark:text-gray-400"
+                            className="max-w-xl mb-10 text-gray-600 dark:text-gray-400"
                         >
                             Have a question or want to collaborate? Feel free to reach out via any
                             platform below — I’d love to hear from you!
@@ -137,8 +137,9 @@ const Contact = () => {
                             autoplay
                             loop
                             src={contactAnimation}
-                            style={{ height: "500px", width: "500px" }}
+                            className="w-full max-w-[300px] md:max-w-[500px] h-auto mx-auto"
                         />
+
                     </motion.div>
 
                 </div>
