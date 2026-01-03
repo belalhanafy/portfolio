@@ -72,7 +72,7 @@ const IntroAnimation = ({ onFinish }) => {
         // 3️⃣ FADE SVGs
         // ============================
         tl.to([svgRef.current, wordRef.current], {
-            opacity: 1,
+            opacity: 0,
             duration: 0.4
         }, "+=0.25");
 
