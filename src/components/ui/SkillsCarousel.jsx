@@ -1,5 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
+// --- IMAGE IMPORTS ---
 import html from "../../assets/images/skills/html.png";
 import css from "../../assets/images/skills/css.png";
 import javascript from "../../assets/images/skills/javascript.png";
@@ -25,27 +26,41 @@ const skills = [
     { name: "Redux", logo: redux },
     { name: "Framer Motion", logo: framer },
     { name: "Shadcn UI", logo: chad },
-    { name: "nextjs", logo: next },
-    // ➕ Add more skills here
+    { name: "Next.js", logo: next },
 ];
 
-export default function SkillsCarousel() {
+// 1. We wrap the component in React.memo
+// This stops the component from re-rendering (and re-fetching images) 
+// unless the skills array itself changes.
+const SkillsCarousel = memo(() => {
+
+    // We double the array once outside the JSX to keep it stable
+    const duplicatedSkills = [...skills, ...skills];
+
     return (
-        <div className="relative w-full py-10 overflow-hidden">
+        <div className="relative w-full py-10 overflow-hidden bg-transparent">
             <div
-                className="flex gap-10 w-max animate-scroll"
-                style={{ "--animation-duration": "30s" }}
+                className="flex gap-10 w-max animate-scroll hover:[animation-play-state:paused]"
+                style={{
+                    "--animation-duration": "30s",
+                    display: "flex"
+                }}
             >
-                {[...skills, ...skills].map((skill, idx) => (
+                {duplicatedSkills.map((skill, idx) => (
                     <div
-                        key={idx}
-                        className="flex flex-col items-center justify-center min-w-[120px]"
+                        // 2. Stable Key: Prevents React from "re-mounting" items incorrectly
+                        key={`${skill.name}-${idx}`}
+                        className="flex flex-col items-center justify-center min-w-[120px] transition-transform duration-300 hover:scale-110"
                     >
-                        <img
-                            src={skill.logo}
-                            alt={skill.name}
-                            className="object-contain w-16 h-16"
-                        />
+                        <div className="flex items-center justify-center w-20 h-20 p-2 shadow-sm rounded-2xl">
+                            <img
+                                src={skill.logo}
+                                alt={skill.name}
+                                className="object-contain w-16 h-16"
+                                loading="lazy"
+
+                            />
+                        </div>
                         <p className="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                             {skill.name}
                         </p>
@@ -54,4 +69,5 @@ export default function SkillsCarousel() {
             </div>
         </div>
     );
-}
+});
+export default SkillsCarousel;
