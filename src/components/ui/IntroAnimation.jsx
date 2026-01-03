@@ -72,47 +72,46 @@ const IntroAnimation = ({ onFinish }) => {
         // 3️⃣ FADE SVGs
         // ============================
         tl.to([svgRef.current, wordRef.current], {
-            opacity: 0,
+            opacity: 1,
             duration: 0.4
         }, "+=0.25");
 
         // ============================
         // 4️⃣ SHOW SPLIT PANELS
         // ============================
-        tl.set([topRef.current, bottomRef.current], {
-            opacity: 1
-        });
+        // tl.set([topRef.current, bottomRef.current], {
+        //     opacity: 1
+        // });
 
         // ⏸ PAUSE so images are visible
-        tl.to({}, { duration: 0.4 });
+        // tl.to({}, { duration: 0.4 });
 
         // ============================
         // 5️⃣ SPLIT OPEN
         // ============================
-        tl.to(topRef.current, {
-            y: "-100%",
-            duration: 1,
-            ease: "power4.inOut"
-        });
+        // tl.to(topRef.current, {
+        //     y: "-100%",
+        //     duration: 1,
+        //     ease: "power4.inOut"
+        // });
 
-        tl.to(bottomRef.current, {
-            y: "100%",
-            duration: 1,
-            ease: "power4.inOut"
-        }, "<");
+        // tl.to(bottomRef.current, {
+        //     y: "100%",
+        //     duration: 1,
+        //     ease: "power4.inOut"
+        // }, "<");
 
     }, [onFinish]);
 
     return (
         <div className={`fixed inset-0 flex flex-col z-[9999] overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
             {/* CENTER SVGs */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center">
                 <div
                     ref={svgRef}
-                    className="-mb-6 opacity-0"
-                >
+                    className="flex items-center justify-center mx-auto opacity-0 w-96 sm:w-auto">
                     {/* LOGO SVG */}
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="500.000000pt" height="280.000000pt" viewBox="0 0 310.000000 231.000000" preserveAspectRatio="xMidYMid meet">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="500" height="280" viewBox="0 0 310.000000 231.000000" preserveAspectRatio="xMidYMid meet">
                         <defs>
                             <linearGradient id="drawGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stopColor="#1d4ed8" />   {/* blue-700 */}
@@ -141,10 +140,9 @@ const IntroAnimation = ({ onFinish }) => {
 
                 <div
                     ref={wordRef}
-                    className="-mt-16 opacity-0"
-                >
+                    className="flex items-center justify-center mx-auto -mt-16 opacity-0 w-96 sm:w-auto" >
                     {/* WORD SVG */}
-                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="500.000000pt" height="150.000000pt" viewBox="0 0 600.000000 199.000000" preserveAspectRatio="xMidYMid meet">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="500" height="150" viewBox="0 0 600.000000 199.000000" preserveAspectRatio="xMidYMid meet">
                         <defs>
                             <linearGradient id="drawGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stopColor="#1d4ed8" />   {/* blue-700 */}
@@ -218,24 +216,24 @@ const IntroAnimation = ({ onFinish }) => {
                 </div>
             </div>
 
-            <div
+            {/* <div
                 ref={topRef}
                 className={`flex items-end justify-center flex-1 ${isDark ? 'bg-gray-900' : 'bg-slate-200'} opacity-0`}>
                 <img
                     src={topImg}
                     className="w-[420px] object-contain pointer-events-none"
                 />
-            </div>
+            </div> */}
 
             {/* BOTTOM IMAGE */}
-            <div
+            {/* <div
                 ref={bottomRef}
                 className={`flex items-start justify-center flex-1 ${isDark ? 'bg-gray-900' : 'bg-slate-200'} opacity-0`}>
                 <img
                     src={bottomImg}
                     className="w-[420px] object-contain pointer-events-none"
                 />
-            </div>
+            </div> */}
         </div>
     );
 };
