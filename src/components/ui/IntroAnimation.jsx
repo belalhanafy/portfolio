@@ -1,10 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 import topImg from "@/assets/images/wings_loading.png";
 import bottomImg from "@/assets/images/7anoof.png";
 
 const IntroAnimation = ({ onFinish }) => {
+
+    const [isDark, setIsDark] = useState(() => {
+        const savedTheme = localStorage.getItem("theme");
+        return savedTheme === "dark";
+    });
     const svgRef = useRef(null);
     const wordRef = useRef(null);
     const topRef = useRef(null);
@@ -20,7 +25,7 @@ const IntroAnimation = ({ onFinish }) => {
         });
 
         tl.set([svgRef.current, wordRef.current], { opacity: 1, duration: 0.3 });
-        
+
         // ============================
         // 1️⃣ DRAW LOGO (FAST)
         // ============================
@@ -99,8 +104,7 @@ const IntroAnimation = ({ onFinish }) => {
     }, [onFinish]);
 
     return (
-        <div className="fixed inset-0 flex flex-col z-[9999] bg-white overflow-hidden">
-
+        <div className={`fixed inset-0 flex flex-col z-[9999] overflow-hidden ${isDark ? 'bg-black' : 'bg-white'}`}>
             {/* CENTER SVGs */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <div
@@ -216,8 +220,7 @@ const IntroAnimation = ({ onFinish }) => {
 
             <div
                 ref={topRef}
-                className="flex items-end justify-center flex-1 bg-black opacity-0"
-            >
+                className={`flex items-end justify-center flex-1 ${isDark ? 'bg-gray-900' : 'bg-slate-200'} opacity-0`}>
                 <img
                     src={topImg}
                     className="w-[420px] object-contain pointer-events-none"
@@ -227,8 +230,7 @@ const IntroAnimation = ({ onFinish }) => {
             {/* BOTTOM IMAGE */}
             <div
                 ref={bottomRef}
-                className="flex items-start justify-center flex-1 bg-black opacity-0"
-            >
+                className={`flex items-start justify-center flex-1 ${isDark ? 'bg-gray-900' : 'bg-slate-200'} opacity-0`}>
                 <img
                     src={bottomImg}
                     className="w-[420px] object-contain pointer-events-none"

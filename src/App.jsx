@@ -46,11 +46,6 @@ export default function App() {
             <Landing isDark={isDark} />
           </div>
 
-          {/* 2. GRANULAR SUSPENSE 
-             Instead of one big wrapper, we wrap sections so they can 
-             load independently. This stops the "Request Waterfall" 
-             from blocking the whole UI.
-          */}
           <Suspense fallback={<SectionLoader />}>
             <div className="container max-w-7xl">
               <About />
