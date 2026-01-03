@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const NeonBorder = ({ text, isDark }) => {
   return (
-    <StyledWrapper isDark={isDark}>
+    <StyledWrapper $isDark={isDark}>
       <button className="button text-nowrap">
         {text}
       </button>
