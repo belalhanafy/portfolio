@@ -25,7 +25,7 @@ const Footer = () => {
 
                 <div className="flex flex-wrap justify-center gap-6 mb-6 text-xl">
                     <a
-                        href="https://github.com/"
+                        href="https://github.com/belalhanafy"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="transition-colors hover:text-cyan-500 dark:hover:text-cyan-400"
@@ -34,7 +34,7 @@ const Footer = () => {
                     </a>
 
                     <a
-                        href="https://linkedin.com/"
+                        href="https://www.linkedin.com/in/belal-hanafy-9887a9232/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="transition-colors hover:text-purple-500 dark:hover:text-purple-400"

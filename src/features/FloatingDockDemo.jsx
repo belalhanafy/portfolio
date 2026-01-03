@@ -12,7 +12,7 @@ export function FloatingDockDemo() {
     {
       title: "Facebook",
       icon: <SlSocialFacebook className="w-full h-full text-blue-500" />,
-      href: "https://www.facebook.com/belal",
+      href: "https://www.facebook.com/yossef.ana.986",
     },
     {
       title: "GitHub",
@@ -22,12 +22,12 @@ export function FloatingDockDemo() {
           style={{ filter: "drop-shadow(0 0 3px white)" }}
         />
       ),
-      href: "https://github.com/belal",
+      href: "https://github.com/belalhanafy",
     },
     {
       title: "LinkedIn",
       icon: <FiLinkedin className="w-full h-full text-blue-600" />,
-      href: "https://www.linkedin.com/in/belal",
+      href: "https://www.linkedin.com/in/belal-hanafy-9887a9232/",
     },
     {
       title: "Portfolio",
@@ -42,7 +42,7 @@ export function FloatingDockDemo() {
     {
       title: "Codeforces",
       icon: <HiOutlineCode className="w-full h-full text-purple-500" />,
-      href: "https://codeforces.com/profile/belal",
+      href: "https://codeforces.com/profile/belalhanafy",
     },
     {
       title: "khamsat",
