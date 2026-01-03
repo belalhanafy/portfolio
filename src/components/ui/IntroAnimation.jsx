@@ -19,6 +19,8 @@ const IntroAnimation = ({ onFinish }) => {
             onComplete: onFinish
         });
 
+        tl.set([svgRef.current, wordRef.current], { opacity: 1, duration: 0.3 });
+        
         // ============================
         // 1️⃣ DRAW LOGO (FAST)
         // ============================
@@ -103,7 +105,7 @@ const IntroAnimation = ({ onFinish }) => {
             <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <div
                     ref={svgRef}
-                    className="-mb-6"
+                    className="-mb-6 opacity-0"
                 >
                     {/* LOGO SVG */}
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="500.000000pt" height="280.000000pt" viewBox="0 0 310.000000 231.000000" preserveAspectRatio="xMidYMid meet">
@@ -135,7 +137,7 @@ const IntroAnimation = ({ onFinish }) => {
 
                 <div
                     ref={wordRef}
-                    className="-mt-16"
+                    className="-mt-16 opacity-0"
                 >
                     {/* WORD SVG */}
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="500.000000pt" height="150.000000pt" viewBox="0 0 600.000000 199.000000" preserveAspectRatio="xMidYMid meet">
