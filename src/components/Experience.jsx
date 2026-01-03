@@ -2,12 +2,21 @@ import { motion } from "framer-motion";
 
 const experiences = [
     {
-        title: "Junior Frontend Developer (Freelance)",
+        title: "Freelance Frontend Developer – E-commerce Project",
         date: "2025",
         location: "Cairo, Egypt",
         description: [
             "Delivered a full e-commerce project with modern UI.",
             "Collaborated with clients and backend developers for seamless integration.",
+        ],
+    },
+    {
+        title: "Freelance Frontend Developer – Apartment Rental Dashboard",
+        date: "2025",
+        location: "Cairo, Egypt",
+        description: [
+            "Built an apartment rental management dashboard with React, implementing booking, room management, and analytics features.",
+            "Integrated client and backend workflows for seamless operations.",
         ],
     },
     {
@@ -38,6 +47,7 @@ const experiences = [
         ],
     },
 ];
+
 
 const education = [
     {
