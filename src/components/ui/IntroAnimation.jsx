@@ -79,27 +79,27 @@ const IntroAnimation = ({ onFinish }) => {
         // ============================
         // 4️⃣ SHOW SPLIT PANELS
         // ============================
-        // tl.set([topRef.current, bottomRef.current], {
-        //     opacity: 1
-        // });
+        tl.set([topRef.current, bottomRef.current], {
+            opacity: 1
+        });
 
         // ⏸ PAUSE so images are visible
-        // tl.to({}, { duration: 0.4 });
+        tl.to({}, { duration: 0.4 });
 
         // ============================
         // 5️⃣ SPLIT OPEN
         // ============================
-        // tl.to(topRef.current, {
-        //     y: "-100%",
-        //     duration: 1,
-        //     ease: "power4.inOut"
-        // });
+        tl.to(topRef.current, {
+            y: "-100%",
+            duration: 1,
+            ease: "power4.inOut"
+        });
 
-        // tl.to(bottomRef.current, {
-        //     y: "100%",
-        //     duration: 1,
-        //     ease: "power4.inOut"
-        // }, "<");
+        tl.to(bottomRef.current, {
+            y: "100%",
+            duration: 1,
+            ease: "power4.inOut"
+        }, "<");
 
     }, [onFinish]);
 
@@ -216,24 +216,24 @@ const IntroAnimation = ({ onFinish }) => {
                 </div>
             </div>
 
-            {/* <div
+            <div
                 ref={topRef}
                 className={`flex items-end justify-center flex-1 ${isDark ? 'bg-gray-900' : 'bg-slate-200'} opacity-0`}>
                 <img
                     src={topImg}
                     className="w-[420px] object-contain pointer-events-none"
                 />
-            </div> */}
+            </div>
 
             {/* BOTTOM IMAGE */}
-            {/* <div
+            <div
                 ref={bottomRef}
                 className={`flex items-start justify-center flex-1 ${isDark ? 'bg-gray-900' : 'bg-slate-200'} opacity-0`}>
                 <img
                     src={bottomImg}
                     className="w-[420px] object-contain pointer-events-none"
                 />
-            </div> */}
+            </div>
         </div>
     );
 };
