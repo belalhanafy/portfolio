@@ -45,10 +45,20 @@ const About = memo(() => {
               triggerOnView={true}
             />
           ) : (
-            <div className="h-24" /> 
+            <div className="h-24" />
           )}
 
-          <div className="w-full max-w-[870px] mx-auto xl:mx-0 px-4 sm:px-6 xl:px-0">
+          <div className="
+          w-full
+          max-w-[870px]
+          max-[1280px]:max-w-[850px] 
+          max-[1024px]:max-w-[780px] 
+          max-[900px]:max-w-[700px]  
+          max-[720px]:max-w-[650px]  
+          max-[640px]:max-w-[580px]  
+          max-[600px]:max-w-[500px]  
+          max-[480px]:max-w-[350px]  
+          mx-auto xl:mx-0 px-4 sm:px-6 xl:px-0">
             <SkillsCarousel />
           </div>
         </div>
@@ -62,8 +72,8 @@ const About = memo(() => {
             loading="lazy"
             className="relative z-10 object-cover object-top w-64 h-64 md:w-80 md:h-80 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 p-[2px] transition-all duration-1000"
             style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)"
+              opacity: inView ? 1 : 0,
+              transform: inView ? "translateY(0)" : "translateY(20px)"
             }}
           />
         </div>
