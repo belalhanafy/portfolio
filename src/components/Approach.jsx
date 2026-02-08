@@ -41,25 +41,27 @@ const Approach = () => {
                 My Approach
             </motion.h2>
 
-            <div className="grid grid-cols-1 gap-10 px-6 mx-auto max-w-7xl sm:grid-cols-2 lg:grid-cols-4">
-                {steps.map((step, index) => (
-                    <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.2, duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className="p-6 transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-gray-900 hover:shadow-xl hover:-translate-y-2 dark:border-gray-700"
-                    >
-                        <div className="flex justify-center mb-4">{step.icon}</div>
-                        <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-white">
-                            {step.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {step.description}
-                        </p>
-                    </motion.div>
-                ))}
+            <div className="px-6 mx-auto max-w-7xl">
+                <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                    {steps.map((step, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.2, duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="p-6 transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-gray-900 hover:shadow-xl hover:-translate-y-2 dark:border-gray-700"
+                        >
+                            <div className="flex justify-center mb-4">{step.icon}</div>
+                            <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-white">
+                                {step.title}
+                            </h3>
+                            <p className="text-sm text-gray-600 dark:text-gray-400">
+                                {step.description}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );

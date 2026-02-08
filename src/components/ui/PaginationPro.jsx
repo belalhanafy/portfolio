@@ -6,7 +6,7 @@ const PaginationPro = ({
     onClickNext,
 }) => {
     return (
-        <div className="flex flex-col items-center justify-center -mt-4 space-x-4 space-y-6 sm:-mt-1 sm:flex-row sm:space-x-6 sm:space-y-0 ">
+        <div className="flex flex-col items-center justify-center mt-4 space-x-4 space-y-6 sm:mt-0 sm:flex-row sm:space-x-6 sm:space-y-0 ">
             <p className="text-sm text-gray-800 dark:text-gray-500">
                 Page
                 <span className="font-bold bg-[#A374FF] text-white px-[5px] py-[1px] mx-1 rounded">

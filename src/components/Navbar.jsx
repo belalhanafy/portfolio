@@ -103,7 +103,7 @@ const Navbar = ({ isDark, setIsDark }) => {
                     </ul>
 
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center justify-between space-x-2">
                         <DarkModeToggle setIsDark={setIsDark} />
                         <Menu onClick={toggleMenu} isDark={isDark} isOpen={isOpen} />
                         <div onClick={handleScrollToContact}>

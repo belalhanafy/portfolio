@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect, useRef } from "react";
 import SkillsCarousel from "./ui/SkillsCarousel";
-import profileImg from "../assets/images/my_Image.jpg";
+import profileImg from "../assets/images/webp_images/my_Image.webp";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 const words = `Hi, I’m Belal, a passionate frontend developer with experience in building modern web applications using React, TailwindCSS, Firebase, and more. I love solving problems, creating beautiful UIs, and continuously learning new technologies to improve my craft. I also work as a freelancer on Khamsat, delivering projects to clients and gaining real-world experience in web development.`;
@@ -36,7 +36,18 @@ const About = memo(() => {
       </h2>
 
       <div className="flex flex-col-reverse items-center gap-12 xl:flex-row xl:items-center">
-        <div className="flex-[2] text-center xl:text-left">
+        <div className="flex-[2] text-center xl:text-left
+        w-full
+          max-w-[870px]
+          max-[1280px]:max-w-[850px] 
+          max-[1024px]:max-w-[780px] 
+          max-[900px]:max-w-[700px]  
+          max-[720px]:max-w-[650px]  
+          max-[640px]:max-w-[580px]  
+          max-[600px]:max-w-[500px]  
+          max-[480px]:max-w-[350px]  
+          mx-auto xl:mx-0 "
+        >
           {/* Only start the typing animation when the user scrolls to this section */}
           {inView ? (
             <TextGenerateEffect
@@ -48,17 +59,7 @@ const About = memo(() => {
             <div className="h-24" />
           )}
 
-          <div className="
-          w-full
-          max-w-[870px]
-          max-[1280px]:max-w-[850px] 
-          max-[1024px]:max-w-[780px] 
-          max-[900px]:max-w-[700px]  
-          max-[720px]:max-w-[650px]  
-          max-[640px]:max-w-[580px]  
-          max-[600px]:max-w-[500px]  
-          max-[480px]:max-w-[350px]  
-          mx-auto xl:mx-0 px-4 sm:px-6 xl:px-0">
+          <div>
             <SkillsCarousel />
           </div>
         </div>
@@ -70,7 +71,7 @@ const About = memo(() => {
             src={profileImg}
             alt="Belal"
             loading="lazy"
-            className="relative z-10 object-cover object-top w-64 h-64 md:w-80 md:h-80 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 p-[2px] transition-all duration-1000"
+            className="relative z-10 object-cover object-top w-72 h-64 md:w-80 md:h-80 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 p-[2px] transition-all duration-1000"
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translateY(0)" : "translateY(20px)"
@@ -78,7 +79,7 @@ const About = memo(() => {
           />
         </div>
       </div>
-    </section>
+    </section >
   );
 });
 

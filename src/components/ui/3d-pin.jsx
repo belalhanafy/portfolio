@@ -25,7 +25,7 @@ export const PinContainer = ({
       onMouseLeave={onMouseLeave}>
       <div
         style={{
-          perspective: "1200px", 
+          perspective: "1200px",
           transform: "rotateX(70deg) translateZ(0deg)",
         }}
         className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
@@ -34,9 +34,9 @@ export const PinContainer = ({
             transform: transform,
           }}
           className="absolute left-1/2 p-6 top-1/2 flex justify-start items-start 
-                    rounded-3xl shadow-[0_10px_20px_rgb(0_0_0/0.4)] bg-white dark:bg-black border border-white/[0.2] 
+                    rounded-3xl shadow-2xl bg-white dark:bg-black border border-white/[0.2] 
                     group-hover/pin:border-white/[0.3] transition duration-700 overflow-hidden
-                    md:w-[38rem] lg:w-[32rem] xl:w-[38rem] w-[20rem] sm:w-[32rem] h-auto"
+                    md:w-[38rem] lg:w-[32rem] xl:w-[38rem] w-[18rem] min-[400px]:w-[22rem] min-[480px]:w-[26rem] sm:w-[32rem] h-auto"
         >
           <div className={cn("relative z-50 w-full h-full", className)}>
             {children}

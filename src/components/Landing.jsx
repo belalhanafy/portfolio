@@ -1,6 +1,6 @@
 import React from 'react';
-import landingBg from '@/assets/images/herobg.png';
-import landingBgWhite from '@/assets/images/bg-herowhite.png';
+import landingBg from '@/assets/images/webp_images/herobg.webp';
+import landingBgWhite from '@/assets/images/webp_images/bg-herowhite.webp';
 import ScrollToBottom from '@/features/ScrollToBottom';
 import NeonBorder from '@/features/NeonBorder';
 import { FlipWords } from '@/components/ui/flip-words';

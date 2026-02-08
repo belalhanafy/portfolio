@@ -1,18 +1,18 @@
 import React, { memo } from "react";
 
 // --- IMAGE IMPORTS ---
-import html from "../../assets/images/skills/html.png";
-import css from "../../assets/images/skills/css.png";
-import javascript from "../../assets/images/skills/javascript.png";
-import reactLogo from "../../assets/images/skills/react.png";
-import typescript from "../../assets/images/skills/typescript.png";
-import tailwind from "../../assets/images/skills/tailwind.png";
-import github from "../../assets/images/skills/github.png";
-import firebase from "../../assets/images/skills/Firebase.png";
-import redux from "../../assets/images/skills/redux.svg";
-import framer from "../../assets/images/skills/framer.png";
-import chad from "../../assets/images/skills/shadcn.png";
-import next from "../../assets/images/skills/nextjs-icon.webp";
+import html from "../../assets/images/skills_webp/html.webp";
+import css from "../../assets/images/skills_webp/css.webp";
+import javascript from "../../assets/images/skills_webp/javascript.webp";
+import reactLogo from "../../assets/images/skills_webp/react.webp";
+import typescript from "../../assets/images/skills_webp/typescript.webp";
+import tailwind from "../../assets/images/skills_webp/tailwind.webp";
+import github from "../../assets/images/skills_webp/github.webp";
+import firebase from "../../assets/images/skills_webp/Firebase.webp";
+import redux from "../../assets/images/skills_webp/redux.webp";
+import framer from "../../assets/images/skills_webp/framer.webp";
+import chad from "../../assets/images/skills_webp/shadcn.webp";
+import next from "../../assets/images/skills_webp/nextjs-icon.webp";
 
 const skills = [
     { name: "HTML", logo: html },

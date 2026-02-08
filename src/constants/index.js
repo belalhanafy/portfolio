@@ -5,21 +5,22 @@ import html from "@/assets/images/html-5-svgrepo-com.svg";
 import css from "@/assets/images/css-3-svgrepo-com.svg";
 import js from "@/assets/images/js-svgrepo-com.svg";
 import materialImg from "@/assets/images/material-ui-svgrepo-com.svg";
-import shadcnImg from "@/assets/images/shadcn.png";
-import uiverse from "@/assets/images/uiverse.jpeg";
-import clerk from "@/assets/images/clerk.jpeg";
-import nivo from "@/assets/images/NIVO.png";
-import gsap from "@/assets/images/gsap.png";
-import threeJs from "@/assets/images/threejs.png";
-import parallelx from "@/assets/images/parallelx.png";
-import Ecommerce from "@/assets/images/e-commerce.png";
-import akira from "@/assets/images/akira.png";
-import brainwaveai from "@/assets/images/brainwaveai.png";
-import airesumebuilder from "@/assets/images/airesumebuilder.png";
-import dashboard from "@/assets/images/dashboard.png";
-import apple from "@/assets/images/apple.png";
-import firebase from "@/assets/images/Firebase Logo.png";
-import chatty from "@/assets/images/chatty.png";
+import shadcnImg from "@/assets/images/webp_images/shadcn.webp";
+import uiverse from "@/assets/images/webp_images/uiverse.webp";
+import clerk from "@/assets/images/webp_images/clerk.webp";
+import nivo from "@/assets/images/webp_images/NIVO.webp";
+import gsap from "@/assets/images/webp_images/gsap.webp";
+import threeJs from "@/assets/images/webp_images/threejs.webp";
+import firebase from "@/assets/images/webp_images/Firebase Logo.webp";
+import parallelx from "@/assets/images/webp_images/parallelx.webp";
+
+import Ecommerce from "@/assets/images/webp_images/e-commerce.webp";
+import akira from "@/assets/images/webp_images/akira.webp";
+import brainwaveai from "@/assets/images/webp_images/brainwaveai.webp";
+import airesumebuilder from "@/assets/images/webp_images/airesumebuilder.webp";
+import dashboard from "@/assets/images/webp_images/dashboard.webp";
+import apple from "@/assets/images/webp_images/apple.webp";
+import chatty from "@/assets/images/webp_images/chatty.webp";
 export const projects = [
     {
         id: 1,

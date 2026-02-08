@@ -90,19 +90,19 @@ const Experience = () => {
     return (
         <section
             id="experience"
-            className="py-20 bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-950 dark:to-gray-900"
+            className="px-6 py-20 mx-auto bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-950 dark:to-gray-900 max-w-7xl"
         >
             <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="mb-10 text-3xl font-bold text-center text-gray-800 md:text-4xl dark:text-white"
+                className="mb-10 text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-4xl"
             >
                 Experience & Education
             </motion.h2>
 
-            <div className="grid grid-cols-1 gap-12 px-6 mx-auto max-w-7xl md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
                 <div>
                     <h3 className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 dark:from-cyan-300 dark:to-purple-400 md:text-left">
                         Experience
@@ -172,7 +172,7 @@ const Experience = () => {
                 </div>
 
                 <section className="mt-2 md:col-span-2">
-                    <h3 className="mb-10 text-3xl font-semibold text-center text-transparent md:text-4xl bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 dark:from-cyan-300 dark:to-pink-400">
+                    <h3 className="mb-10 text-3xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-4xl">
                         Courses & Competitions
                     </h3>
 
