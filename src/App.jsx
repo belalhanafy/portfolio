@@ -60,14 +60,14 @@ export default function App() {
   // ----------------------------
   // 2) Intro Animation
   // ----------------------------
-  // if (showIntro) return <IntroAnimation onFinish={handleIntroFinish} />;
+  if (showIntro) return <IntroAnimation onFinish={handleIntroFinish} />;
 
   // ----------------------------
   // 3) Full Website
   // ----------------------------
   return (
     <>
-      {/* <ScrollProgressBar />
+      <ScrollProgressBar />
       <BackToTopBtn />
 
       <div className="container px-6 max-w-7xl">
@@ -88,8 +88,7 @@ export default function App() {
 
       <Approach />
       <Contact />
-      <Footer /> */}
-      <IntroAnimation onFinish={handleIntroFinish} />
+      <Footer />
     </>
   );
 }

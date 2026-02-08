@@ -90,13 +90,13 @@ const IntroAnimation = ({ onFinish }) => {
         // 5️⃣ SPLIT OPEN
         // ============================
         tl.to(topRef.current, {
-            y: "0",
+            y: "-100%",
             duration: 1,
             ease: "power4.inOut"
         });
 
         tl.to(bottomRef.current, {
-            y: "0",
+            y: "100%",
             duration: 1,
             ease: "power4.inOut"
         }, "<");
