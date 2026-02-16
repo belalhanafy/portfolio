@@ -90,8 +90,9 @@ const Experience = () => {
     return (
         <section
             id="experience"
-            className="px-6 py-20 mx-auto bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-950 dark:to-gray-900 max-w-7xl"
+            className="py-20 bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-950 dark:to-gray-900"
         >
+        <div className="container px-6 mx-auto max-w-7xl">
             <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -216,6 +217,7 @@ const Experience = () => {
                     </div>
                 </section>
             </div>
+        </div>
         </section>
     );
 };

@@ -31,9 +31,18 @@ const About = memo(() => {
       id="about"
       className="w-full py-8 pt-16 text-gray-800 dark:text-gray-200"
     >
-      <h2 className="xl:mb-6 mb-10 text-center xl:text-left text-3xl text-[#A374FF] font-bold md:text-5xl">
-        About Me
-      </h2>
+      <div className="flex flex-col items-end gap-2 mb-10 xl:flex-row xl:mb-6">
+        <h2 className=" text-center xl:text-left text-3xl text-[#A374FF] font-bold md:text-5xl">
+          About Me
+        </h2>
+
+        <button class="flex items-center gap-2 bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800 px-4 py-2 rounded-full transition">
+          <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+          <span class="text-sm font-semibold text-green-800 dark:text-green-200">
+            Open for Freelance
+          </span>
+        </button>
+      </div>
 
       <div className="flex flex-col-reverse items-center gap-12 xl:flex-row xl:items-center">
         <div className="flex-[2] text-center xl:text-left

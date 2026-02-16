@@ -47,27 +47,29 @@ const CountUpNumber = ({ target }) => {
 
 const Stats = () => {
     return (
-        <section className="px-6 mx-auto text-center max-w-7xl py-14 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
-            <h2 className="mb-10 text-3xl font-bold text-transparent md:text-4xl bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400">
-                My Impact in Numbers
-            </h2>
+        <section className="text-center py-14 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+            <div className="container px-6 mx-auto max-w-7xl">
+                <h2 className="mb-10 text-3xl font-bold text-transparent md:text-4xl bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400">
+                    My Impact in Numbers
+                </h2>
 
-            <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
-                {stats.map((stat, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.2, duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className="flex flex-col items-center"
-                    >
-                        <CountUpNumber target={stat.value} />
-                        <span className="mt-2 text-sm text-gray-600 sm:text-base dark:text-gray-400">
-                            {stat.label}
-                        </span>
-                    </motion.div>
-                ))}
+                <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
+                    {stats.map((stat, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.2, duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="flex flex-col items-center"
+                        >
+                            <CountUpNumber target={stat.value} />
+                            <span className="mt-2 text-sm text-gray-600 sm:text-base dark:text-gray-400">
+                                {stat.label}
+                            </span>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );
