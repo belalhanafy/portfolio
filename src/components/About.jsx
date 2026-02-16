@@ -31,7 +31,7 @@ const About = memo(() => {
       id="about"
       className="w-full py-8 pt-16 text-gray-800 dark:text-gray-200"
     >
-      <div className="flex flex-col items-end gap-2 mb-10 xl:flex-row xl:mb-6">
+      <div className="flex flex-col items-center gap-2 mb-10 lg:items-end xl:flex-row xl:mb-6">
         <h2 className=" text-center xl:text-left text-3xl text-[#A374FF] font-bold md:text-5xl">
           About Me
         </h2>
