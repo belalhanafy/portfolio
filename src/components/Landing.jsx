@@ -6,6 +6,9 @@ import NeonBorder from '@/features/NeonBorder';
 import { FlipWords } from '@/components/ui/flip-words';
 import { FloatingDockDemo } from '@/features/FloatingDockDemo';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Landing = ({ isDark }) => {
   const words = ["Front-End Developer", "Software Engineer", "UI/UX Enthusiast"];
@@ -17,54 +20,54 @@ const Landing = ({ isDark }) => {
   const buttonsRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
 
-    // Animate the main section
     tl.fromTo(
       sectionRef.current,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-    );
-
-    // Animate heading
-    tl.fromTo(
+    )
+    .fromTo(
       headingRef.current,
       { opacity: 0, y: -30 },
       { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
       "-=0.4"
-    );
-
-    // Animate subheading
-    tl.fromTo(
+    )
+    .fromTo(
       subheadingRef.current,
       { opacity: 0, x: -30 },
       { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
       "-=0.3"
-    );
-
-    // Animate paragraph
-    tl.fromTo(
+    )
+    .fromTo(
       paragraphRef.current,
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
       "-=0.3"
-    );
-
-    // Animate FloatingDockDemo
-    tl.fromTo(
+    )
+    .fromTo(
       dockRef.current,
       { opacity: 0, scale: 0.8 },
       { opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" },
       "-=0.3"
-    );
-
-    // Animate buttons with stagger
-    tl.fromTo(
+    )
+    .fromTo(
       buttonsRef.current.querySelectorAll('a'),
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.5, stagger: 0.2, ease: "power2.out" },
       "-=0.3"
     );
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   return (
@@ -98,7 +101,9 @@ const Landing = ({ isDark }) => {
             <div className="relative flex items-center justify-center h-12 overflow-hidden text-xl text-blue-700 dark:text-blue-400 sm:h-16 lg:h-20 sm:text-3xl lg:text-5xl">
               <FlipWords words={words} />
             </div>
+
           </h2>
+
 
           <p ref={paragraphRef} className="w-full max-w-2xl px-2 mt-4 text-base text-black dark:text-white md:text-lg sm:px-0">
             I'm a <span className="text-blue-700 dark:text-blue-400">Software Engineer</span> passionate about
