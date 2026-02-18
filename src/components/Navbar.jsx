@@ -22,6 +22,7 @@ const Navbar = ({ isDark, setIsDark }) => {
     const mobileContactRef = useRef(null);
     const logoRef = useRef(null);
     const rightRef = useRef(null);
+    const navRef = useRef(null);
 
     const handleScrollToContact = () => {
         const contactSection = document.getElementById("contact");
@@ -75,29 +76,23 @@ const Navbar = ({ isDark, setIsDark }) => {
     }, []);
 
     useEffect(() => {
-        // Animate logo and right elements on mount
-        if (logoRef.current) {
-            gsap.fromTo(
-                logoRef.current,
-                { x: -50, opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
-            );
-        }
-        if (rightRef.current) {
-            gsap.fromTo(
-                rightRef.current,
-                { x: 50, opacity: 0 },
-                { x: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
-            );
-        }
-        // Animate desktop nav items on mount
-        if (navUlRef.current) {
-            gsap.fromTo(
-                navUlRef.current.querySelectorAll('li'),
-                { opacity: 0, y: -20 },
-                { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, delay: 0.3, ease: "power2.out" }
-            );
-        }
+        const tl = gsap.timeline();
+
+        // Animate nav bar
+        tl.fromTo(
+            navRef.current,
+            { y: -100, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+        );
+
+        // Stagger logo, nav items, right section
+        const elements = [logoRef.current, ...navUlRef.current.querySelectorAll('li'), rightRef.current];
+        tl.fromTo(
+            elements,
+            { opacity: 0, y: -20 },
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" },
+            "-=0.3"
+        );
     }, []);
 
     useEffect(() => {
@@ -134,7 +129,7 @@ const Navbar = ({ isDark, setIsDark }) => {
     return (
         <>
             <div className="relative">
-                <nav className="absolute z-50 flex items-center justify-between w-full py-6">
+                <nav ref={navRef} className="absolute z-50 flex items-center justify-between w-full py-6">
                     <div ref={logoRef}>
                         <img loading="lazy" src={logo} alt="logo" className="w-40 md:w-52" />
                     </div>
