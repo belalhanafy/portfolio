@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Lightbulb, Palette, Code2, Rocket } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
     {
@@ -38,33 +35,34 @@ const Approach = () => {
     const stepsRef = useRef([]);
 
     useEffect(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse",
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    const tl = gsap.timeline();
+
+                    // Animate title
+                    tl.fromTo(
+                        titleRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+                    );
+
+                    // Animate steps with stagger for smooth sequential animation
+                    tl.fromTo(
+                        stepsRef.current,
+                        { opacity: 0, y: 50 },
+                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+                    );
+
+                    observer.unobserve(entry.target);
+                }
             },
-        });
-
-        // Animate title
-        tl.fromTo(
-            titleRef.current,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+            { threshold: 0.1 }
         );
 
-        // Animate steps with stagger for smooth sequential animation
-        tl.fromTo(
-            stepsRef.current,
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
-            "-=0.3"
-        );
+        if (sectionRef.current) observer.observe(sectionRef.current);
 
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
+        return () => observer.disconnect();
     }, []);
 
     return (

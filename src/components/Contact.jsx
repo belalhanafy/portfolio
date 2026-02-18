@@ -1,11 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import emailjs from "@emailjs/browser";
 import { Player } from '@lottiefiles/react-lottie-player';
 import contactAnimation from "../../src/components/ui/lotties/Cute Robot Flying Cartoon.json";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
     const formRef = useRef();
@@ -53,49 +50,51 @@ const Contact = () => {
     };
 
     useEffect(() => {
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play none none reverse",
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    const tl = gsap.timeline();
+
+                    // Animate title
+                    tl.fromTo(
+                        titleRef.current,
+                        { opacity: 0, y: 50 },
+                        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+                    );
+
+                    // Animate paragraph
+                    tl.fromTo(
+                        paragraphRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+                        "-=0.4"
+                    );
+
+                    // Animate form elements with stagger
+                    tl.fromTo(
+                        formElementsRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    // Animate Lottie animation from right
+                    tl.fromTo(
+                        animationRef.current,
+                        { opacity: 0, scale: 0.8, x: 100 },
+                        { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" },
+                        "-=0.5"
+                    );
+
+                    observer.unobserve(entry.target);
+                }
             },
-        });
-
-        // Animate title
-        tl.fromTo(
-            titleRef.current,
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+            { threshold: 0.1 }
         );
 
-        // Animate paragraph
-        tl.fromTo(
-            paragraphRef.current,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-            "-=0.4"
-        );
+        if (sectionRef.current) observer.observe(sectionRef.current);
 
-        // Animate form elements with stagger
-        tl.fromTo(
-            formElementsRef.current,
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
-            "-=0.3"
-        );
-
-        // Animate Lottie animation from right
-        tl.fromTo(
-            animationRef.current,
-            { opacity: 0, scale: 0.8, x: 100 },
-            { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" },
-            "-=0.5"
-        );
-
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
+        return () => observer.disconnect();
     }, []);
 
     return (
