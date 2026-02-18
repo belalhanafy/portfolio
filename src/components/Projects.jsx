@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/constants";
 import ProjectDetails from "./ProjectDetails";
 import PaginationPro from "./ui/PaginationPro";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,6 +14,7 @@ const Projects = () => {
 
   const titleRef = useRef(null);
   const gridRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const updatePageSize = () => {
@@ -45,14 +49,25 @@ const Projects = () => {
   };
 
   useEffect(() => {
-    // Animate title on mount
-    if (titleRef.current) {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: -30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-      );
-    }
+    // Animate title on scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.fromTo(
+      titleRef.current,
+      { opacity: 0, y: -30 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+    );
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
 
   useEffect(() => {
@@ -80,6 +95,7 @@ const Projects = () => {
 
   return (
     <div
+      ref={sectionRef}
       id="projects"
       className="flex flex-col w-full gap-0 py-20 mx-auto overflow-hidden md:gap-16"
     >

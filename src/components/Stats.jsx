@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
     { label: "Projects Completed", value: 20 },
@@ -15,22 +18,16 @@ const CountUpNumber = ({ target }) => {
     const [isInView, setIsInView] = useState(false);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsInView(true);
-                    observer.unobserve(entry.target);
-                }
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ref.current,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse",
+                onEnter: () => setIsInView(true),
             },
-            { threshold: 0.1 }
-        );
+        });
 
-        if (ref.current) observer.observe(ref.current);
-
-        return () => observer.disconnect();
-    }, []);
-
-    useEffect(() => {
         if (isInView) {
             let start = 0;
             const duration = 2000; // 2 seconds
@@ -48,6 +45,10 @@ const CountUpNumber = ({ target }) => {
                 setCount(Math.floor(start));
             }, stepTime);
         }
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
     }, [isInView, target]);
 
     return (
@@ -67,35 +68,30 @@ const Stats = () => {
     const statsRef = useRef([]);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    const tl = gsap.timeline();
-
-                    // Animate title
-                    tl.fromTo(
-                        titleRef.current,
-                        { opacity: 0, y: -30 },
-                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-                    );
-
-                    // Animate stat items with stagger
-                    tl.fromTo(
-                        statsRef.current,
-                        { opacity: 0, y: 40 },
-                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    observer.unobserve(entry.target);
-                }
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse",
             },
-            { threshold: 0.1 }
+        });
+
+        tl.fromTo(
+            titleRef.current,
+            { opacity: 0, y: -30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+        )
+        .fromTo(
+            statsRef.current,
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power2.out" },
+            "-=0.3"
         );
 
-        if (sectionRef.current) observer.observe(sectionRef.current);
-
-        return () => observer.disconnect();
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
     }, []);
 
     return (

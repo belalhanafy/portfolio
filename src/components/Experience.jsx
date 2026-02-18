@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
     {
@@ -98,75 +101,73 @@ const Experience = () => {
     const coursesRef = useRef([]);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    const tl = gsap.timeline();
-
-                    // Animate main title
-                    tl.fromTo(
-                        titleRef.current,
-                        { opacity: 0, y: 30 },
-                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-                    );
-
-                    // Animate experience title
-                    tl.fromTo(
-                        experienceTitleRef.current,
-                        { opacity: 0, x: -30 },
-                        { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    // Animate experience items with stagger
-                    tl.fromTo(
-                        experienceItemsRef.current,
-                        { opacity: 0, x: -50 },
-                        { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    // Animate education title
-                    tl.fromTo(
-                        educationTitleRef.current,
-                        { opacity: 0, x: -30 },
-                        { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    // Animate education items with stagger
-                    tl.fromTo(
-                        educationItemsRef.current,
-                        { opacity: 0, x: -50 },
-                        { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    // Animate courses title
-                    tl.fromTo(
-                        coursesTitleRef.current,
-                        { opacity: 0, y: 30 },
-                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    // Animate course cards with stagger
-                    tl.fromTo(
-                        coursesRef.current,
-                        { opacity: 0, y: 30 },
-                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
-                        "-=0.3"
-                    );
-
-                    observer.unobserve(entry.target);
-                }
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse",
             },
-            { threshold: 0.1 }
+        });
+
+        // Animate main title
+        tl.fromTo(
+            titleRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
         );
 
-        if (sectionRef.current) observer.observe(sectionRef.current);
+        // Animate experience title
+        tl.fromTo(
+            experienceTitleRef.current,
+            { opacity: 0, x: -30 },
+            { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
+            "-=0.3"
+        );
 
-        return () => observer.disconnect();
+        // Animate experience items with stagger
+        tl.fromTo(
+            experienceItemsRef.current,
+            { opacity: 0, x: -50 },
+            { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
+            "-=0.3"
+        );
+
+        // Animate education title
+        tl.fromTo(
+            educationTitleRef.current,
+            { opacity: 0, x: -30 },
+            { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
+            "-=0.3"
+        );
+
+        // Animate education items with stagger
+        tl.fromTo(
+            educationItemsRef.current,
+            { opacity: 0, x: -50 },
+            { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
+            "-=0.3"
+        );
+
+        // Animate courses title
+        tl.fromTo(
+            coursesTitleRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+            "-=0.3"
+        );
+
+        // Animate course cards with stagger
+        tl.fromTo(
+            coursesRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+            "-=0.3"
+        );
+
+        return () => {
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
     }, []);
 
     return (
