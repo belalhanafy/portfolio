@@ -3,6 +3,9 @@ import SkillsCarousel from "./ui/SkillsCarousel";
 import profileImg from "../assets/images/webp_images/my_Image.webp";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const words = `Hi, I’m Belal, a passionate frontend developer with experience in building modern web applications using React, TailwindCSS, Firebase, and more. I love solving problems, creating beautiful UIs, and continuously learning new technologies to improve my craft. I also work as a freelancer on Khamsat, delivering projects to clients and gaining real-world experience in web development.`;
 
@@ -14,49 +17,38 @@ const About = memo(() => {
   const imageRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.unobserve(entry.target); // Stop observing once triggered
-        }
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse",
+        onEnter: () => setInView(true),
       },
-      { threshold: 0.1 }
+    });
+
+    tl.fromTo(
+      headerRef.current,
+      { opacity: 0, y: -30 },
+      { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+    )
+    .fromTo(
+      contentRef.current,
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
+      "-=0.3"
+    )
+    .fromTo(
+      imageRef.current,
+      { opacity: 0, scale: 0.8, x: 50 },
+      { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" },
+      "-=0.5"
     );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => observer.disconnect();
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, []);
-
-  useEffect(() => {
-    if (inView) {
-      const tl = gsap.timeline();
-
-      // Animate header
-      tl.fromTo(
-        headerRef.current,
-        { opacity: 0, y: -30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-      );
-
-      // Animate content
-      tl.fromTo(
-        contentRef.current,
-        { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
-        "-=0.3"
-      );
-
-      // Animate image
-      tl.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.8, x: 50 },
-        { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" },
-        "-=0.5"
-      );
-    }
-  }, [inView]);
 
   return (
     <section
@@ -77,7 +69,7 @@ const About = memo(() => {
         </button>
       </div>
 
-      <div className="flex flex-col-reverse items-center gap-12 xl:flex-row xl:items-start">
+      <div className="flex flex-col-reverse items-center gap-12 xl:flex-row xl:items-center">
         <div ref={contentRef} className="flex-[2] text-center xl:text-left
         w-full
           max-w-[870px]
@@ -93,7 +85,7 @@ const About = memo(() => {
           {/* Only start the typing animation when the user scrolls to this section */}
           {inView ? (
             <TextGenerateEffect
-              className="mb-1 leading-relaxed"
+              className="mb-3 leading-relaxed"
               words={words}
               triggerOnView={true}
             />
@@ -113,7 +105,7 @@ const About = memo(() => {
             src={profileImg}
             alt="Belal"
             loading="lazy"
-            className="relative z-10 object-cover object-top w-72 h-64 md:w-80 md:h-[21rem] rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 p-[2px] transition-all duration-1000"
+            className="relative z-10 object-cover object-top w-72 h-64 md:w-80 md:h-80 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 p-[2px] transition-all duration-1000"
             style={{
               opacity: inView ? 1 : 0,
               transform: inView ? "translateY(0)" : "translateY(20px)"
