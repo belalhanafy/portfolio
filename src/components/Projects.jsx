@@ -11,6 +11,7 @@ const Projects = () => {
 
   const titleRef = useRef(null);
   const gridRef = useRef(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const updatePageSize = () => {
@@ -45,14 +46,24 @@ const Projects = () => {
   };
 
   useEffect(() => {
-    // Animate title on mount
-    if (titleRef.current) {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: -30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
-      );
-    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Animate title on scroll
+          gsap.fromTo(
+            titleRef.current,
+            { opacity: 0, y: -30 },
+            { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+          );
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -80,6 +91,7 @@ const Projects = () => {
 
   return (
     <div
+      ref={sectionRef}
       id="projects"
       className="flex flex-col w-full gap-0 py-20 mx-auto overflow-hidden md:gap-16"
     >
