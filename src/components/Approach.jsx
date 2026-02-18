@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { Lightbulb, Palette, Code2, Rocket } from "lucide-react";
 
 const steps = [
@@ -29,27 +30,56 @@ const steps = [
 ];
 
 const Approach = () => {
+    const sectionRef = useRef(null);
+    const titleRef = useRef(null);
+    const stepsRef = useRef([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    const tl = gsap.timeline();
+
+                    // Animate title
+                    tl.fromTo(
+                        titleRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+                    );
+
+                    // Animate steps with stagger for smooth sequential animation
+                    tl.fromTo(
+                        stepsRef.current,
+                        { opacity: 0, y: 50 },
+                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+                    );
+
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) observer.observe(sectionRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section id="approach" className="py-20 text-center bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
-            <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+        <section ref={sectionRef} id="approach" className="py-20 text-center bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+            <h2
+                ref={titleRef}
                 className="mb-12 text-3xl font-bold text-gray-800 md:text-5xl dark:text-white"
             >
                 My Approach
-            </motion.h2>
+            </h2>
 
             <div className="px-6 mx-auto max-w-7xl">
                 <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
                     {steps.map((step, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.2, duration: 0.6 }}
-                            viewport={{ once: true }}
+                            ref={(el) => (stepsRef.current[index] = el)}
                             className="p-6 transition-transform duration-300 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-gray-900 hover:shadow-xl hover:-translate-y-2 dark:border-gray-700"
                         >
                             <div className="flex justify-center mb-4">{step.icon}</div>
@@ -59,7 +89,7 @@ const Approach = () => {
                             <p className="text-sm text-gray-600 dark:text-gray-400">
                                 {step.description}
                             </p>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

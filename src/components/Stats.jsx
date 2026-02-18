@@ -1,5 +1,5 @@
-import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 const stats = [
     { label: "Projects Completed", value: 20 },
@@ -12,7 +12,23 @@ const CountUpNumber = ({ target }) => {
     const [count, setCount] = useState(0);
     const [done, setDone] = useState(false);
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
+    const [isInView, setIsInView] = useState(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (ref.current) observer.observe(ref.current);
+
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         if (isInView) {
@@ -35,39 +51,72 @@ const CountUpNumber = ({ target }) => {
     }, [isInView, target]);
 
     return (
-        <motion.span
+        <span
             ref={ref}
             className="text-4xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500"
         >
             {count}
             {done && <span className="text-cyan-400">+</span>}
-        </motion.span>
+        </span>
     );
 };
 
 const Stats = () => {
+    const sectionRef = useRef(null);
+    const titleRef = useRef(null);
+    const statsRef = useRef([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    const tl = gsap.timeline();
+
+                    // Animate title
+                    tl.fromTo(
+                        titleRef.current,
+                        { opacity: 0, y: -30 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+                    );
+
+                    // Animate stat items with stagger
+                    tl.fromTo(
+                        statsRef.current,
+                        { opacity: 0, y: 40 },
+                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) observer.observe(sectionRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section className="text-center py-14 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
+        <section ref={sectionRef} className="text-center py-14 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950">
             <div className="container px-6 mx-auto max-w-7xl">
-                <h2 className="mb-10 text-3xl font-bold text-transparent md:text-4xl bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400">
+                <h2 ref={titleRef} className="mb-10 text-3xl font-bold text-transparent md:text-4xl bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400">
                     My Impact in Numbers
                 </h2>
 
                 <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
                     {stats.map((stat, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.2, duration: 0.6 }}
-                            viewport={{ once: true }}
+                            ref={(el) => (statsRef.current[i] = el)}
                             className="flex flex-col items-center"
                         >
                             <CountUpNumber target={stat.value} />
                             <span className="mt-2 text-sm text-gray-600 sm:text-base dark:text-gray-400">
                                 {stat.label}
                             </span>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

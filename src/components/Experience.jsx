@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 const experiences = [
     {
@@ -87,35 +88,111 @@ const courses = [
 ];
 
 const Experience = () => {
+    const sectionRef = useRef(null);
+    const titleRef = useRef(null);
+    const experienceTitleRef = useRef(null);
+    const experienceItemsRef = useRef([]);
+    const educationTitleRef = useRef(null);
+    const educationItemsRef = useRef([]);
+    const coursesTitleRef = useRef(null);
+    const coursesRef = useRef([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    const tl = gsap.timeline();
+
+                    // Animate main title
+                    tl.fromTo(
+                        titleRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+                    );
+
+                    // Animate experience title
+                    tl.fromTo(
+                        experienceTitleRef.current,
+                        { opacity: 0, x: -30 },
+                        { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    // Animate experience items with stagger
+                    tl.fromTo(
+                        experienceItemsRef.current,
+                        { opacity: 0, x: -50 },
+                        { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    // Animate education title
+                    tl.fromTo(
+                        educationTitleRef.current,
+                        { opacity: 0, x: -30 },
+                        { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    // Animate education items with stagger
+                    tl.fromTo(
+                        educationItemsRef.current,
+                        { opacity: 0, x: -50 },
+                        { opacity: 1, x: 0, duration: 0.6, stagger: 0.15, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    // Animate courses title
+                    tl.fromTo(
+                        coursesTitleRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    // Animate course cards with stagger
+                    tl.fromTo(
+                        coursesRef.current,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+                        "-=0.3"
+                    );
+
+                    observer.unobserve(entry.target);
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) observer.observe(sectionRef.current);
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <section
+            ref={sectionRef}
             id="experience"
             className="py-20 bg-gradient-to-b from-gray-100 to-gray-50 dark:from-gray-950 dark:to-gray-900"
         >
         <div className="container px-6 mx-auto max-w-7xl">
-            <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+            <h2
+                ref={titleRef}
                 className="mb-10 text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-4xl"
             >
                 Experience & Education
-            </motion.h2>
+            </h2>
 
             <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
                 <div>
-                    <h3 className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 dark:from-cyan-300 dark:to-purple-400 md:text-left">
+                    <h3 ref={experienceTitleRef} className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 dark:from-cyan-300 dark:to-purple-400 md:text-left">
                         Experience
                     </h3>
                     <div className="relative border-l border-gray-300 dark:border-gray-700">
                         {experiences.map((exp, index) => (
-                            <motion.div
+                            <div
                                 key={index}
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.15, duration: 0.6 }}
-                                viewport={{ once: true }}
+                                ref={(el) => (experienceItemsRef.current[index] = el)}
                                 className="relative pl-10 mb-12"
                             >
                                 <div className="absolute w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full -left-[9px] top-2"></div>
@@ -133,23 +210,20 @@ const Experience = () => {
                                         </li>
                                     ))}
                                 </ul>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
 
                 <div>
-                    <h3 className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-left">
+                    <h3 ref={educationTitleRef} className="mb-8 text-2xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-left">
                         Education
                     </h3>
                     <div className="relative border-l border-gray-300 dark:border-gray-700">
                         {education.map((edu, index) => (
-                            <motion.div
+                            <div
                                 key={index}
-                                initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.15, duration: 0.6 }}
-                                viewport={{ once: true }}
+                                ref={(el) => (educationItemsRef.current[index] = el)}
                                 className="relative pl-10 mb-12"
                             >
                                 <div className="absolute w-4 h-4 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full -left-[9px] top-2"></div>
@@ -167,27 +241,24 @@ const Experience = () => {
                                         </li>
                                     ))}
                                 </ul>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>
 
                 <section className="mt-2 md:col-span-2">
-                    <h3 className="mb-10 text-3xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-4xl">
+                    <h3 ref={coursesTitleRef} className="mb-10 text-3xl font-semibold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500 dark:from-pink-300 dark:to-purple-400 md:text-4xl">
                         Courses & Competitions
                     </h3>
 
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
                         {courses.map((course, i) => (
-                            <motion.a
+                            <a
                                 key={i}
                                 href={course.link || "#"}
                                 target={course.link ? "_blank" : "_self"}
                                 rel="noopener noreferrer"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.15, duration: 0.6 }}
-                                viewport={{ once: true }}
+                                ref={(el) => (coursesRef.current[i] = el)}
                                 className="
           relative group 
           w-full 
@@ -212,7 +283,7 @@ const Experience = () => {
                                         {course.description}
                                     </p>
                                 </div>
-                            </motion.a>
+                            </a>
                         ))}
                     </div>
                 </section>

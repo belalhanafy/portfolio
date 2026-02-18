@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { projects } from "@/constants";
 import ProjectDetails from "./ProjectDetails";
 import PaginationPro from "./ui/PaginationPro";
@@ -8,6 +8,9 @@ const Projects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(2);
   const [direction, setDirection] = useState(1); // +1 for next, -1 for prev
+
+  const titleRef = useRef(null);
+  const gridRef = useRef(null);
 
   useEffect(() => {
     const updatePageSize = () => {
@@ -41,53 +44,59 @@ const Projects = () => {
     }
   };
 
-  // Different motion for left & right cards
-  const cardVariants = {
-    enter: (custom) => ({
-      x: custom === "left" ? -200 * direction : 200 * direction,
-      opacity: 0,
-      scale: 0.95,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6, ease: "easeInOut" },
-    },
-    exit: (custom) => ({
-      x: custom === "left" ? 200 * direction : -200 * direction,
-      opacity: 0,
-      scale: 0.95,
-      transition: { duration: 0.5, ease: "easeInOut" },
-    }),
-  };
+  useEffect(() => {
+    // Animate title on mount
+    if (titleRef.current) {
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, y: -30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    // Animate cards on page change
+    if (gridRef.current) {
+      const cards = gridRef.current.children;
+      gsap.fromTo(
+        cards,
+        {
+          x: (i) => (i % 2 === 0 ? -200 * direction : 200 * direction),
+          opacity: 0,
+          scale: 0.95,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.1,
+        }
+      );
+    }
+  }, [currentPage, direction]);
 
   return (
     <div
       id="projects"
       className="flex flex-col w-full gap-0 py-20 mx-auto overflow-hidden md:gap-16"
     >
-      <h2 className="mb-5 text-3xl font-bold text-center text-black md:text-5xl dark:text-white">
+      <h2 ref={titleRef} className="mb-5 text-3xl font-bold text-center text-black md:text-5xl dark:text-white">
         A small selection of{" "}
         <span className="text-[#A374FF]">recent projects</span>
       </h2>
 
-      <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-2 sm:gap-16 lg:gap-12">
-        <AnimatePresence mode="popLayout" custom={direction}>
-          {paginatedData.map((project, index) => (
-            <motion.div
-              key={project.id}
-              custom={index % 2 === 0 ? "left" : "right"}
-              variants={cardVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="flex justify-center"
-            >
-              <ProjectDetails {...project} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      <div ref={gridRef} className="relative grid grid-cols-1 gap-8 lg:grid-cols-2 sm:gap-16 lg:gap-12">
+        {paginatedData.map((project, index) => (
+          <div
+            key={project.id}
+            className="flex justify-center"
+          >
+            <ProjectDetails {...project} />
+          </div>
+        ))}
       </div>
 
       <PaginationPro
