@@ -15,7 +15,7 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
 const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className={cn("absolute bottom-4 -right-0 -translate-x-1/2 block md:hidden", className)}>
+    <div className={cn("fixed bottom-4 right-4 z-50 block md:hidden", className)}>
       <AnimatePresence>
         {open && (
           <motion.div
