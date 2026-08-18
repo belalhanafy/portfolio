@@ -111,8 +111,8 @@ const Landing = ({ isDark }) => {
             <span className="text-blue-700 dark:text-blue-400"> UI/UX design</span>. Explore my projects and experience.
           </p>
 
-          <div className="mt-2 sm:mt-5">
-            <FloatingDockDemo dockRef={dockRef}/>
+          <div ref={dockRef} className="mt-2 sm:mt-5">
+            <FloatingDockDemo />
           </div>
 
           <div ref={buttonsRef} className="flex flex-col justify-center w-full gap-3 mt-0 md:mt-8 sm:flex-row sm:gap-4 sm:w-auto">

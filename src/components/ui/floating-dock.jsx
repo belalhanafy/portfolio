@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import { createPortal } from "react-dom"; // 1. Added import
 
 export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
   return (
@@ -14,13 +15,14 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
 
 const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
-  return (
+
+  const mobileContent = (
     <div className={cn("fixed bottom-4 right-4 z-50 block md:hidden", className)}>
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute inset-x-0 flex flex-col gap-2 mb-2 bottom-full"
+            className="absolute bottom-full right-0 mb-2 flex flex-col items-center gap-2"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -34,9 +36,9 @@ const FloatingDockMobile = ({ items, className }) => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-neutral-900"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
                 >
-                  <div className="w-4 h-4">{item.icon}</div>
+                  <div className="h-4 w-4">{item.icon}</div>
                 </a>
               </motion.div>
             ))}
@@ -45,12 +47,19 @@ const FloatingDockMobile = ({ items, className }) => {
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 dark:bg-neutral-800"
+        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
       >
-        <IconLayoutNavbarCollapse className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
       </button>
     </div>
   );
+
+  // 2. Render directly to document.body to bypass GSAP's transform context
+  if (typeof window !== "undefined") {
+    return createPortal(mobileContent, document.body);
+  }
+
+  return null;
 };
 
 const FloatingDockDesktop = ({ items, className }) => {

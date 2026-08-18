@@ -7,7 +7,7 @@ import { RxPerson } from "react-icons/rx";
 import { RiGithubLine } from "react-icons/ri";
 import { SiFreelancer } from "react-icons/si"; // optional icon substitute
 
-export function FloatingDockDemo({dockRef}) {
+export function FloatingDockDemo() {
   const links = [
     {
       title: "Facebook",
@@ -58,9 +58,7 @@ export function FloatingDockDemo({dockRef}) {
 
   return (
     <div className="flex items-center justify-center w-full mt-8">
-      <div ref={dockRef}>
-        <FloatingDock items={links} />
-      </div>
+      <FloatingDock items={links} />
     </div>
   );
 }
